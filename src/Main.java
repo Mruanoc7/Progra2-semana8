@@ -1,19 +1,26 @@
-    import Pizza.base.*;
-    import Pizza.especialidades.PizzaItaliana;
-    import Pizza.interfaces.*;
+import Pizza.base.*;
+import Pizza.especialidades.*;
+import Pizza.interfaces.*;
 
-    public class Main {
-        public static void main(String[] args) {
-            Topping pepperoni = new Topping("Pepperoni", 2.0);
-            Topping champiñones = new Topping("Champiñones", 1.5);
+public class Main {
+    public static void main(String[] args) {
+        Pizza pizza1 = new PizzaMargarita();
+        pizza1.prepare();
+        pizza1.getCost();
 
-            Pizza pizza = new Pizza("Pizza de Pepperoni y Champiñones", 0, pepperoni, champiñones);
+        Pizza pizza2 = new PizzaPepperoni();
+        pizza2.prepare();
+        pizza2.getCost();
 
-            pizza.prepare();
+        Pizza pizza3 = new PizzaVegetariana();
+        pizza3.prepare();
+        pizza3.getCost();
 
-            // Obtener el costo de la pizza
-            pizza.getCost();
+        Pizza pizza4 = new PizzaHawaiana();
+        pizza4.prepare();
+        pizza4.getCost();
 
 
-        }
+
     }
+}

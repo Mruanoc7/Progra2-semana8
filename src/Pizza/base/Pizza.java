@@ -17,16 +17,37 @@ public class Pizza {
 //    espera una lista de objetos Topping, pero en lugar de especificar explícitamente la lista de
 //    objetos, se utiliza el operador de dispersión para pasar todos los argumentos restantes como una
 //    lista de objetos Topping.
-    public Pizza(String name, double price, Topping... toppings) {
-        this.name = name;
-        this.price = price; // Inicializa el precio con el precio base
-        this.toppings.addAll(Arrays.asList(toppings)); // Agrega los toppings a la lista
 
-        // Suma el precio de los toppings al precio base
+    public enum PizzaSize {
+        SMALL, MEDIUM, LARGE
+    }
+
+    private PizzaSize size;
+
+    public Pizza(String name, double price, PizzaSize size, Topping... toppings) {
+        this.name = name;
+        this.size = size;
+        this.toppings.addAll(Arrays.asList(toppings));
+
+        // Calcular el precio según el tamaño
+        switch (size) {
+            case MEDIUM:
+                this.price = price * 1.2; // Aumento del 20% para tamaño mediano
+                break;
+            case LARGE:
+                this.price = price * 1.35; // Aumento del 35% para tamaño grande
+                break;
+            default:
+                this.price = price; // Tamaño pequeño (precio base)
+                break;
+        }
+
+        // Sumar el precio de los toppings al precio base
         for (Topping topping : toppings) {
             this.price += topping.getPrecio();
         }
     }
+
 
 
 
